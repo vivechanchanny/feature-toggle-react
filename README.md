@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Feature Toggle App
+
+This is a demo React application showcasing feature toggles.
+
+## Setup
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run the application using `npm start`.
+
+## Usage
+
+- Access the application in your web browser.
+- Features will be toggled based on the admin status.
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
