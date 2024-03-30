@@ -3,15 +3,17 @@ pipeline {
      stages {
         stage("Build") {
             steps {
+                sh "ls" 
                 sh "sudo npm install"
+                sh "ls" 
                 sh "sudo npm run build"
             }
         }
-        stage("Deploy") {
-            steps {
-                sh "sudo rm -rf /var/www/jenkins-react-app"
-                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app/"
-            }
-        }
+        // stage("Deploy") {
+        //     steps {
+        //         sh "sudo rm -rf /var/www/jenkins-react-app"
+        //         sh "sudo cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app/"
+        //     }
+        // }
     }
 }
