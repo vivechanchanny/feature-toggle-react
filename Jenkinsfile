@@ -21,7 +21,7 @@ pipeline {
             steps {
                 // Transfer the built files to the target server via SSH
                 sshagent(credentials: [SSH_CREDENTIALS]) {
-                    sh "scp -r ./build/* ${TARGET_SERVER}:~/"
+                    sh "scp -r ./build/* ${TARGET_SERVER}:/var/www/html"
                 }
             }
         }
