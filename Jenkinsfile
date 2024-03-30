@@ -5,10 +5,11 @@ pipeline {
         stage('Build') {
             steps {
                 // Checkout the source code from the Git repository
-                git 'https://github.com/vivechanchanny/feature-toggle-react.git'
+                sh 'ls'
                 
                 // Install dependencies and build the React application
                 sh 'npm install'
+                sh 'ls'
                 sh 'npm run build'
             }
         }
