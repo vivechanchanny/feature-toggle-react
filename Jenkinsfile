@@ -1,19 +1,29 @@
 pipeline {
-     agent any
-     stages {
-        stage("Build") {
+    agent any
+    
+    stages {
+        stage('Build') {
             steps {
-                sh "ls" 
-                sh "sudo npm install"
-                sh "ls" 
-                sh "sudo npm run build"
+                // Checkout the source code from the Git repository
+                git 'https://github.com/vivechanchanny/feature-toggle-react.git'
+                
+                // Install dependencies and build the React application
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
-        // stage("Deploy") {
-        //     steps {
-        //         sh "sudo rm -rf /var/www/jenkins-react-app"
-        //         sh "sudo cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app/"
-        //     }
-        // }
+        
+        stage('Deploy') {
+            environment {
+                SSH_CREDENTIALS = credentials('login-web')
+                TARGET_SERVER = 'ec2-user@3.222.188.252'
+            }
+            steps {
+                // Transfer the built files to the target server via SSH
+                sshagent(credentials: [SSH_CREDENTIALS]) {
+                    sh "scp -r ./build/* ${TARGET_SERVER}:~/"
+                }
+            }
+        }
     }
 }
